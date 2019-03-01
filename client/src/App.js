@@ -3,7 +3,7 @@ import { Route, NavLink } from 'react-router-dom';
 
 import './App.css';
 import HomeView from './views/HomeView';
-// import JokesView from './views/JokesView';
+import JokesView from './views/JokesView';
 import LoginView from './views/LoginView';
 import RegisterView from './views/RegisterView';
 
@@ -15,10 +15,14 @@ class App extends Component {
           <NavLink to="/">Home</NavLink>
           <NavLink to="/jokes">Jokes</NavLink>
           <NavLink to="/login">Login</NavLink>
+          {localStorage.getItem('jwt') && <button onClick={() => {
+            localStorage.removeItem('jwt')
+            this.props.history.push('/login')
+          }}>Logout</button>}
         </header>
         <main>
           <Route exact path="/" component={HomeView}/>
-          {/* <Route path="/jokes" component={JokesView}/> */}
+          <Route path="/jokes" component={JokesView}/>
           <Route path="/login" component={LoginView}/>
           <Route path="/register" component={RegisterView}/>
         </main>
