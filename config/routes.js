@@ -28,20 +28,27 @@ function getToken(user){
 }
 
 function register(req, res) {
-  const user = req.body;
-  user.password = bcrypt.hashSync(user.password, 12);
-
-  db('users')
-    .insert(user)
-    .then(user => {
-      res.status(201).json(user)
-    })
-    .catch(error => {
-      res.status(500).json({
-        message: "Server could not register user",
-        error
+  try {
+    const user = req.body;
+    user.password = bcrypt.hashSync(user.password, 12);
+    
+    db('users')
+      .insert(user)
+      .then(user => {
+        res.status(201).json(user)
       })
+      .catch(error => {
+        res.status(400).json({
+          message: "Please provide a username and password",
+          error
+        })
+      })
+  } catch (error) {
+    res.status(500).json({
+      message: "Server could not register the user.",
+      error
     })
+  }
 }
 
 function login(req, res) {
