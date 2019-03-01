@@ -39,7 +39,7 @@ function register(req, res) {
       })
       .catch(error => {
         res.status(400).json({
-          message: "Please provide a username and password",
+          message: "Please provide a unique username and password",
           error
         })
       })
