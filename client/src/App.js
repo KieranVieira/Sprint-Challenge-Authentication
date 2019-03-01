@@ -5,7 +5,7 @@ import './App.css';
 import HomeView from './views/HomeView';
 // import JokesView from './views/JokesView';
 import LoginView from './views/LoginView';
-// import RegisterView from './views/RegisterView';
+import RegisterView from './views/RegisterView';
 
 class App extends Component {
   render() {
@@ -20,7 +20,7 @@ class App extends Component {
           <Route exact path="/" component={HomeView}/>
           {/* <Route path="/jokes" component={JokesView}/> */}
           <Route path="/login" component={LoginView}/>
-          {/* <Route path="/register" component={RegisterView}/> */}
+          <Route path="/register" component={RegisterView}/>
         </main>
       </div>
     );
