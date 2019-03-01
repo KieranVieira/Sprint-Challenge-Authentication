@@ -28,7 +28,6 @@ export class JokesView extends Component {
         return (
             localStorage.getItem('jwt')?
             <div>
-                <h1>Jokes</h1>
                 <ul>
                     {this.state.jokes.map(joke => {
                         return <li>{joke.joke}</li>

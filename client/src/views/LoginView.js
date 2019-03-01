@@ -1,6 +1,49 @@
 import React, { Component } from 'react'
 import axios from 'axios';
 import { Link } from 'react-router-dom';
+import styled from 'styled-components';
+
+const LoginContainer = styled.div`
+    width: 350px;
+    display: flex;
+    flex-direction: column;
+    border: 1px solid gray;
+    border-radius: 10px;
+    padding: 25px;
+    margin: 25px auto;
+    text-align: center;
+    h1{
+        font-weight: 100;
+        margin: 0 0 7px 0;
+    }
+    h3{
+        font-weight: 100;
+        margin: 7px 0 0 0;
+        a{
+            text-decoration: none;
+        }
+    }
+`;
+
+const LoginForm = styled.form`
+    display: flex;
+    flex-direction: column;
+    margin: 5px 0;
+    input,button{
+        padding: 10px 5px;
+        margin: 7px 0;
+        border-radius: 5px;
+        border: 1px solid gray
+    }
+    button{
+        font-size: 15px;
+        &:hover{
+            cursor: pointer;
+            background-color: black;
+            color: white;
+        }
+    }
+`;
 
 export class LoginView extends Component {
   state = {
@@ -32,9 +75,9 @@ export class LoginView extends Component {
 
   render() {
     return (
-      <>
+      <LoginContainer>
         <h1>Login</h1>
-        <form onSubmit={this.handleLogin}>
+        <LoginForm onSubmit={this.handleLogin}>
             <input 
               placeholder="Username" 
               name="username" 
@@ -50,9 +93,9 @@ export class LoginView extends Component {
               type="password"
             />
             <button type='submit'>Login</button>
-        </form>
+        </LoginForm>
         <h3>Don't have an account? <Link to="/register">Sign Up</Link></h3>
-      </>
+      </LoginContainer>
     )
   }
 }
