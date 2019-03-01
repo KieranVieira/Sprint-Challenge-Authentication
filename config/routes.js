@@ -11,8 +11,6 @@ module.exports = server => {
   server.get('/api/jokes', authenticate, getJokes);
 };
 
-const secret = "some interesting secret hmmmm..."
-
 function getToken(user){
   const payload = {
     subject: user.id,
@@ -22,7 +20,11 @@ function getToken(user){
     expiresIn: '1d',
   }
 
-  return jwt.sign(payload, secret, options)
+  return jwt.sign(
+    payload, 
+    process.env.JWT_SECRET || 'add a .env file to root of project with the JWT_SECRET variable', 
+    options
+    )
 }
 
 function register(req, res) {
